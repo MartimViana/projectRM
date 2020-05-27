@@ -2,101 +2,18 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.7937022719950197 0.6073200772751931 0.03462697168966976 5.835509674424804
-  position -0.42481716270195463 0.764693408982795 2.579844750624047
+  orientation 0.3095908569064721 0.9150522693025862 0.25852049389575243 4.685392693522193
+  position -1.8604962584714093 1.343598212551357 0.8239457747283079
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
-Robot {
-  translation -2.21999 -0.149998 7.08
-  rotation 0.5773509358554485 0.5773489358556708 0.5773509358554485 2.0944
-  children [
-    HingeJoint {
-      device [
-        RotationalMotor {
-          name "rotational motor 3"
-          acceleration 1.5655595373012297
-        }
-      ]
-      endPoint Solid {
-        translation 0 0.64 0
-        rotation 1 0 0 0
-        children [
-          Shape {
-            geometry Cylinder {
-              height 0.2
-              radius 0.05
-            }
-          }
-        ]
-        name "solid(2)"
-      }
-    }
-    HingeJoint {
-      device [
-        RotationalMotor {
-          name "rotational motor 2"
-          acceleration 0.72241341228803
-        }
-      ]
-      endPoint Solid {
-        translation 0 0.43 0
-        rotation 1 0 0 0
-        children [
-          Shape {
-            geometry Cylinder {
-              height 0.2
-              radius 0.05
-            }
-          }
-        ]
-        name "solid(1)"
-      }
-    }
-    Shape {
-      geometry Cylinder {
-        height 0.2
-        radius 0.05
-      }
-    }
-    HingeJoint {
-      device [
-        RotationalMotor {
-          name "rotational motor 1"
-          acceleration 1.6086232168900203
-        }
-      ]
-      endPoint Solid {
-        translation 0 0.22 0
-        rotation 1 0 0 0
-        children [
-          Shape {
-            geometry Cylinder {
-              height 0.2
-              radius 0.05
-            }
-          }
-        ]
-      }
-    }
-  ]
-  name "new robot"
-  boundingObject Cylinder {
-    height 0.2
-    radius 0.05
-  }
-  physics Physics {
-  }
-  controller "my_controller"
-  supervisor TRUE
-}
 Windmill {
   translation -26.17 -0.54 20.25
 }
 Robot {
-  translation 0 0.01 0
+  translation 6.69175e-08 0.0099998 0.04
   rotation 0.5773509358554485 0.5773489358556708 0.5773509358554485 2.0944
   children [
     HingeJoint {
@@ -107,8 +24,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0 0.10598100000000003 0
-        rotation 1 0 0 0
+        translation 1.5265566588595902e-16 0.1059809999999985 -6.103321047731483e-17
+        rotation 0.5547001962252291 0 0.8320502943378436 -1.2008898127460162e-15
         children [
           HingeJoint {
             device [
@@ -118,8 +35,8 @@ Robot {
               }
             ]
             endPoint Solid {
-              translation 0 0.11 0
-              rotation 1 0 0 0
+              translation 1.0408340855860843e-17 0.1099999999999979 -9.225390523593248e-17
+              rotation 0.7092993656151906 -0.31524416249564025 -0.6304883249912805 -1.4087150935148696e-15
               children [
                 HingeJoint {
                   device [
@@ -129,10 +46,17 @@ Robot {
                     }
                   ]
                   endPoint Solid {
-                    translation 0 0.10999999999999999 0
-                    rotation 1 0 0 0
+                    translation -6.938893903907228e-18 0.10999999999999804 -4.49221276598358e-17
+                    rotation 0.8427009716003844 0.2407717061715384 0.4815434123430768 -9.222205069512407e-16
                     children [
                       Shape {
+                        appearance Appearance {
+                          texture ImageTexture {
+                            url [
+                              "C:/Users/Sparrow/Desktop/projectRM-master/Skins/leather_texture4187.jpg"
+                            ]
+                          }
+                        }
                         geometry Cylinder {
                           height 0.1
                           radius 0.05
@@ -148,6 +72,13 @@ Robot {
                   }
                 }
                 Shape {
+                  appearance Appearance {
+                    texture ImageTexture {
+                      url [
+                        "C:/Users/Sparrow/Desktop/projectRM-master/Skins/green-seamless-snake-skin-pattern-vector-1478364.jpg"
+                      ]
+                    }
+                  }
                   geometry Cylinder {
                     height 0.1
                     radius 0.05
@@ -163,6 +94,15 @@ Robot {
             }
           }
           Shape {
+            appearance Appearance {
+              material Material {
+              }
+              texture ImageTexture {
+                url [
+                  "C:/Users/Sparrow/Desktop/projectRM-master/Skins/green-seamless-snake-skin-pattern-vector-1478364.jpg"
+                ]
+              }
+            }
             geometry Cylinder {
               height 0.1
               radius 0.05
@@ -177,7 +117,36 @@ Robot {
         }
       }
     }
+    DistanceSensor {
+      translation -0.00999998 0.37 0
+      rotation 0 0 1 -4.712389693899574
+      children [
+        DEF Sensor_Shape Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 1
+          }
+          geometry Capsule {
+            height 0.01
+            radius 0.01
+          }
+        }
+      ]
+      name "Front"
+      description "Frontal distance sensor"
+      boundingObject USE Sensor_Shape
+      physics Physics {
+      }
+    }
     Shape {
+      appearance Appearance {
+        material Material {
+        }
+        texture ImageTexture {
+          url [
+            "C:/Users/Sparrow/Desktop/projectRM-master/Skins/green-seamless-snake-skin-pattern-vector-1478364.jpg"
+          ]
+        }
+      }
       geometry Cylinder {
         height 0.1
         radius 0.05
@@ -186,7 +155,7 @@ Robot {
   ]
   boundingObject Cylinder {
     height 0.1
-    radius 0.05
+    radius 0.01
   }
   physics Physics {
   }
