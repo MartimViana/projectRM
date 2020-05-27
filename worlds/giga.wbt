@@ -2,155 +2,198 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.05754998091958003 -0.9606408202110474 -0.2717668380071451 3.5654330579137397
-  position 25.870850547461192 56.542718047608716 -64.28071352332499
+  orientation 0.7937022719950197 0.6073200772751931 0.03462697168966976 5.835509674424804
+  position -0.42481716270195463 0.764693408982795 2.579844750624047
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
-Pit {
-  translation -4.26967 -0.28 4.27847
-  rotation 0 -1 0 0.279798
-  size 50 4 50
-  xDimension 53
-  zDimension 48
-  appearance SandyGround {
-    textureTransform TextureTransform {
-      scale 6 4
-    }
-    IBLStrength 5
-  }
-  randomSeed 19
-  perlinNOctaves 17
-  noiseAmplitude 0.69
-  pitRadius 4
-}
 Robot {
-  translation 2.99088 -0.14 15.7108
-  rotation -0.9831056944488314 -0.1294279597735375 0.1294279597735375 -1.5878353071795859
-  scale 2 2 2
+  translation -2.21999 -0.149998 7.08
+  rotation 0.5773509358554485 0.5773489358556708 0.5773509358554485 2.0944
   children [
-    SolidPipe {
-      translation -1.87716e-07 0.04 0.0300602
-      rotation 0 0 1 4.692820414042842e-06
-      name "cabeca"
-      height 0.5
-      radius 0.12
-      appearance PBRAppearance {
-        baseColorMap ImageTexture {
-          url [
-            "C:/Users/Sparrow/Downloads/leather_texture4187.jpg"
-          ]
+    HingeJoint {
+      device [
+        RotationalMotor {
+          name "rotational motor 3"
+          acceleration 1.5655595373012297
         }
-        roughness 0.5
-        metalness 0
-      }
-      physics Physics {
-        mass 0.12
+      ]
+      endPoint Solid {
+        translation 0 0.64 0
+        rotation 1 0 0 0
+        children [
+          Shape {
+            geometry Cylinder {
+              height 0.2
+              radius 0.05
+            }
+          }
+        ]
+        name "solid(2)"
       }
     }
     HingeJoint {
-      jointParameters HingeJointParameters {
-        position 44
-        anchor 1.5 0.61 4.04
-      }
-      endPoint SolidPipe {
-        translation -0.025176399999999655 0.509385 0.051837200000000916
-        rotation -0.06709018769792525 0.9977078170540576 -0.008832808380361046 0.26239499999999955
-        height 0.5
-        radius 0.12
-        appearance PBRAppearance {
-          baseColorMap ImageTexture {
-            url [
-              "C:/Users/Sparrow/Desktop/Robos Moveis/green-seamless-snake-skin-pattern-vector-1478364.jpg"
-            ]
+      device [
+        RotationalMotor {
+          name "rotational motor 2"
+          acceleration 0.72241341228803
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.43 0
+        rotation 1 0 0 0
+        children [
+          Shape {
+            geometry Cylinder {
+              height 0.2
+              radius 0.05
+            }
           }
-          roughness 0.5
-          metalness 0
-        }
-        physics Physics {
-          mass 0.2
-        }
+        ]
+        name "solid(1)"
+      }
+    }
+    Shape {
+      geometry Cylinder {
+        height 0.2
+        radius 0.05
       }
     }
     HingeJoint {
-      jointParameters HingeJointParameters {
-        position 22.03
-        anchor 7 0 0
-      }
-      endPoint SolidPipe {
-        translation -2.6645352591003757e-14 1.0092300000000003 0.03923020000000005
-        rotation -1 0 0 3.1027400002985734
-        name "pipe(1)"
-        height 0.5
-        radius 0.12
-        appearance PBRAppearance {
-          baseColorMap ImageTexture {
-            url [
-              "C:/Users/Sparrow/Desktop/Robos Moveis/green-seamless-snake-skin-pattern-vector-1478364.jpg"
-            ]
+      device [
+        RotationalMotor {
+          name "rotational motor 1"
+          acceleration 1.6086232168900203
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.22 0
+        rotation 1 0 0 0
+        children [
+          Shape {
+            geometry Cylinder {
+              height 0.2
+              radius 0.05
+            }
           }
-          roughness 0.5
-          metalness 0
-        }
-        physics Physics {
-          mass 0.2
-        }
-      }
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position 22
-      }
-      endPoint SolidPipe {
-        translation 5.204169999999998e-18 1.469849999999998 0.02301089999999996
-        rotation -1 0 0 3.1327453068479305
-        name "pipe(2)"
-        height 0.5
-        radius 0.12
-        appearance PBRAppearance {
-          baseColorMap ImageTexture {
-            url [
-              "C:/Users/Sparrow/Desktop/Robos Moveis/green-seamless-snake-skin-pattern-vector-1478364.jpg"
-            ]
-          }
-          roughness 0.5
-          metalness 0
-        }
-        physics Physics {
-          mass 0.2
-        }
-      }
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position 22
-      }
-      endPoint SolidPipe {
-        translation -0.00133451 1.96975 0.03975389999999998
-        rotation -0.8660231184050291 -0.0022113403023404435 0.49999906836122815 3.1339253071795863
-        name "pipe(3)"
-        height 0.5
-        radius 0.12
-        appearance PBRAppearance {
-          baseColorMap ImageTexture {
-            url [
-              "C:/Users/Sparrow/Desktop/Robos Moveis/green-seamless-snake-skin-pattern-vector-1478364.jpg"
-            ]
-          }
-          roughness 0.5
-          metalness 0
-        }
-        physics Physics {
-          mass 0.2
-        }
+        ]
       }
     }
   ]
-  name "TitanBoa(1)"
+  name "new robot"
+  boundingObject Cylinder {
+    height 0.2
+    radius 0.05
+  }
+  physics Physics {
+  }
   controller "my_controller"
+  supervisor TRUE
 }
 Windmill {
-  translation -26.17 0 20.25
+  translation -26.17 -0.54 20.25
+}
+Robot {
+  translation 0 0.01 0
+  rotation 0.5773509358554485 0.5773489358556708 0.5773509358554485 2.0944
+  children [
+    HingeJoint {
+      device [
+        RotationalMotor {
+          name "rotational motor 1"
+          acceleration 1.6086232168900203
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.10598100000000003 0
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            device [
+              RotationalMotor {
+                name "rotational motor 2"
+                acceleration 0.72241341228803
+              }
+            ]
+            endPoint Solid {
+              translation 0 0.11 0
+              rotation 1 0 0 0
+              children [
+                HingeJoint {
+                  device [
+                    RotationalMotor {
+                      name "rotational motor 3"
+                      acceleration 1.5655595373012297
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 0.10999999999999999 0
+                    rotation 1 0 0 0
+                    children [
+                      Shape {
+                        geometry Cylinder {
+                          height 0.1
+                          radius 0.05
+                        }
+                      }
+                    ]
+                    boundingObject Cylinder {
+                      height 0.1
+                      radius 0.05
+                    }
+                    physics Physics {
+                    }
+                  }
+                }
+                Shape {
+                  geometry Cylinder {
+                    height 0.1
+                    radius 0.05
+                  }
+                }
+              ]
+              boundingObject Cylinder {
+                height 0.1
+                radius 0.05
+              }
+              physics Physics {
+              }
+            }
+          }
+          Shape {
+            geometry Cylinder {
+              height 0.1
+              radius 0.05
+            }
+          }
+        ]
+        boundingObject Cylinder {
+          height 0.1
+          radius 0.05
+        }
+        physics Physics {
+        }
+      }
+    }
+    Shape {
+      geometry Cylinder {
+        height 0.1
+        radius 0.05
+      }
+    }
+  ]
+  boundingObject Cylinder {
+    height 0.1
+    radius 0.05
+  }
+  physics Physics {
+  }
+  controller "my_controller_2"
+  supervisor TRUE
+}
+WoodenBox {
+  translation 0 -0.57 0.16
+  size 10 1 10
 }
