@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TIME_STEP 64
+#define TIME_STEP 16
 #define PI 3.14
 
 // number of joinst that it has
@@ -26,54 +26,38 @@ const double MODULE_SIZE = 0.2;
 const double GAP_SIZE = 0.01;
 double WHOLE_LENGTH;
 
-/**
- * http://academic.uprm.edu/pcaceres/Undergrad/Snake/id3.htm
- *
- * t - time in seconds.
- * i - i-th joint.
- * n - number of segments.
- * f - frequenty, in hertz
- * a - winding angle, in radians.
- * b - number of periods in a length.
-*/
-double angular_velocity(double t, double i, double n, double f, double a, double b) {
-  double temp = sin(b / (2 * n));
-  if (temp < 0) temp = - temp;
-  double alpha = a * temp;
-  double beta = b / n;
-  double result = alpha * sin(2 * PI * f + (i - 1) * beta + t) * (180 / PI);
+double angular_velocity(double L, double Kn, double a, double s, double i, double n) {
+  double part1 = Kn*PI;
+  double part2 = part1/L;
+  
+  double result = -4 * a * part2;
+  result = result * sin(part2);
+  result = result * sin(2 * part2 * s + 2 * part1 * i / n - part1 / n);
   return result;
 }
 
-/**
- *
-*/
-double iterate_velocity(double t, int i) {
-  double f = 0.5;
-  double a = 1;
-  double b = 1;
-  double speed = angular_velocity(t, i, JOINTS+1, f, a, b);
+double custom_velocity(double t, int i, double precision, double amplitude, double offset) {
+  double value = precision * t;
   
-  return speed;
-}
-
-
-double custom_velocity(double t, int i, double periodsPerTick, double previousSpeed, double amplitude) {
-  //double result = amplitude * cos( i * PI/JOINTS + periods_per_tick * PI * t);
-  double jointAngle = PI / JOINTS * i;
-  double timing = PI / periodsPerTick * t;
-  double result =  amplitude * cos(jointAngle + timing);
-  
-  // prevent the initial problem of the robot not being able to perform sinusoidal curve due to
-  // velocity never being lower than 0.
-  //if (IS_IN_INITIAL_LOOP == 1 && result < previousSpeed) IS_IN_INITIAL_LOOP = 0;
-  //if (IS_IN_INITIAL_LOOP == 0 ) result = 2 * result;
+  double result = -amplitude * sin(value);
   return result;
 }
 
-double iterate_custom_velocity(double t, int i, double previousSpeed, double amplitude) {
-  double periodsPerTick = 1;
-  return custom_velocity(t, i, periodsPerTick, previousSpeed, amplitude);
+double iterate_custom_velocity(double t, int i, double precision, double amplitude, double offset) {
+  return custom_velocity(t, i, precision, amplitude, offset);
+}
+
+/**
+ * a: Amplitude
+ * s: Normalized arc length of the body neutral axis. Is between 0 and 1.
+ * T: Period of the wave.
+*/ 
+double attempt_2(double a, double s, double T, double t) {
+  return a * cos(2 * PI * (s + t / T));
+}
+
+double iterate_attempt_2(double t, double i) {
+  return attempt_2(1, i / JOINTS, 1.5, t);
 }
 
 int main(int argc, char **argv) {
@@ -104,17 +88,21 @@ int main(int argc, char **argv) {
   
   printf("t\t\t0\t1\t2\n");
   double t = 0;
-  double previousSpeed = 0;
-  double amplitude = 0.5;
+  //double precision = 0.6;
+  //double amplitude = 0.5;
+  //double offset = PI / (JOINTS+1);
+  
   /* Start main control loop */
   while (wb_robot_step(TIME_STEP) != -1) {
     printf("%f\t", t);
     for (int i = 0; i < JOINTS; i++) {
+      //double currentLength = MODULE_SIZE * (i + 1) + GAP_SIZE * i;
       // calculate joint angular velocity and apply it to motor
-      double speed = iterate_custom_velocity(t, i, previousSpeed, amplitude);
-      wb_motor_set_position(motor[i], speed);
-      printf("%f\t", speed);
-      previousSpeed = speed;
+      //double speed = iterate_custom_velocity(t, i, precision, amplitude, offset);
+      double pos = iterate_attempt_2(t, i);
+      //double speed = iterate_velocity(t, i);
+      wb_motor_set_position(motor[i], pos);
+      printf("%f\t", pos);
     }
     printf("\n");
     
