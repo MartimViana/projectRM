@@ -11,15 +11,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TIME_STEP 16
-#define PI 3.14
+#define TIME_STEP 32
+#define PI 3.14159265359
 
 // number of joinst that it has
-const int JOINTS = 3;
+const int JOINTS = 6;
 
 // flag that indicates whether the robot is initializing serpentine
 // moviment or not.
-int IS_IN_INITIAL_LOOP = 1;
+//int IS_IN_INITIAL_LOOP = 1;
 
 /* Measurements */
 const double MODULE_SIZE = 0.2;
@@ -53,11 +53,15 @@ double iterate_custom_velocity(double t, int i, double precision, double amplitu
  * T: Period of the wave.
 */ 
 double attempt_2(double a, double s, double T, double t) {
-  return a * cos(2 * PI * (s + t / T));
+  return a * cos(2 * PI * (s + t)/ T);
 }
 
 double iterate_attempt_2(double t, double i) {
-  return attempt_2(1, i / JOINTS, 1.5, t);
+  double amplitude = 0.02;
+  double wavePeriod = 1.5;
+  double arcLength = (MODULE_SIZE * (i + 1) + GAP_SIZE * i) / WHOLE_LENGTH;
+  double result = attempt_2(amplitude, arcLength, wavePeriod, t);
+  return result;
 }
 
 int main(int argc, char **argv) {
@@ -69,11 +73,20 @@ int main(int argc, char **argv) {
   motor[0] = wb_robot_get_device("rotational motor 1");
   motor[1] = wb_robot_get_device("rotational motor 2");
   motor[2] = wb_robot_get_device("rotational motor 3");
+  motor[3] = wb_robot_get_device("rotational motor 4");
+  motor[4] = wb_robot_get_device("rotational motor 5");
+  motor[5] = wb_robot_get_device("rotational motor 6");
+  
+  // Initialize motor position
+  double motorPosition[JOINTS];
   
   // Set initial variables to all motors
   for (int i = 0; i < JOINTS; i++) {
     // Set maximum position to all motors
     wb_motor_set_position(motor[i], 0);
+    
+    // Initialize all motor positions
+    motorPosition[i] = 0;
   }
   
   
@@ -86,7 +99,11 @@ int main(int argc, char **argv) {
   // Calculate length of the robot
   WHOLE_LENGTH = MODULE_SIZE * (JOINTS + 1) + GAP_SIZE * JOINTS;
   
-  printf("t\t\t0\t1\t2\n");
+  printf("t\t");
+  for (int i = 0; i < JOINTS; i++) {
+    printf("\t%d", i);
+  }
+  printf("\n");
   double t = 0;
   //double precision = 0.6;
   //double amplitude = 0.5;
@@ -96,13 +113,11 @@ int main(int argc, char **argv) {
   while (wb_robot_step(TIME_STEP) != -1) {
     printf("%f\t", t);
     for (int i = 0; i < JOINTS; i++) {
-      //double currentLength = MODULE_SIZE * (i + 1) + GAP_SIZE * i;
-      // calculate joint angular velocity and apply it to motor
-      //double speed = iterate_custom_velocity(t, i, precision, amplitude, offset);
-      double pos = iterate_attempt_2(t, i);
+      motorPosition[i] += iterate_attempt_2(t, i);
+      
       //double speed = iterate_velocity(t, i);
-      wb_motor_set_position(motor[i], pos);
-      printf("%f\t", pos);
+      wb_motor_set_position(motor[i], motorPosition[i]);
+      printf("%f\t", motorPosition[i]);
     }
     printf("\n");
     

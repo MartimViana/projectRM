@@ -2,151 +2,134 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.25075110222164776 -0.9471955987816802 -0.19986090759136213 5.06783015758764
-  position 0.6914084686819701 0.2339601917448421 0.7178333037805498
+  orientation 0.1477118612266436 -0.9678314531722454 -0.20367494765793023 4.536249183395532
+  position 1.12962780894581 0.40223956686651746 0.19874582695575485
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
-Robot {
-  translation -2.21999 -0.149998 7.08
-  rotation 0 0.7071055564400445 0.7071080059309292 2.0944
-  children [
-    HingeJoint {
-      device [
-        RotationalMotor {
-          name "rotational motor 3"
-          acceleration 1.5655595373012297
-        }
-      ]
-      endPoint Solid {
-        translation 0 0.64 0
-        rotation 1 0 0 0
-        children [
-          Shape {
-            geometry Cylinder {
-              height 0.2
-              radius 0.05
-            }
-          }
-        ]
-        name "solid(2)"
-      }
-    }
-    HingeJoint {
-      device [
-        RotationalMotor {
-          name "rotational motor 2"
-          acceleration 0.72241341228803
-        }
-      ]
-      endPoint Solid {
-        translation 0 0.43 0
-        rotation 1 0 0 0
-        children [
-          Shape {
-            geometry Cylinder {
-              height 0.2
-              radius 0.05
-            }
-          }
-        ]
-        name "solid(1)"
-      }
-    }
-    Shape {
-      geometry Cylinder {
-        height 0.2
-        radius 0.05
-      }
-    }
-    HingeJoint {
-      device [
-        RotationalMotor {
-          name "rotational motor 1"
-          acceleration 1.6086232168900203
-        }
-      ]
-      endPoint Solid {
-        translation 0 0.22 0
-        rotation 1 0 0 0
-        children [
-          Shape {
-            geometry Cylinder {
-              height 0.2
-              radius 0.05
-            }
-          }
-        ]
-      }
-    }
-  ]
-  name "new robot"
-  boundingObject Cylinder {
-    height 0.2
-    radius 0.05
-  }
-  physics Physics {
-  }
-  controller "my_controller"
-  supervisor TRUE
-}
 Windmill {
   translation -26.17 -0.54 20.25
 }
+WoodenBox {
+  translation 0 -0.57 0.16
+  size 10 1 10
+}
 Robot {
-  translation 0 0.01 0
-  rotation 1.6952594753969508e-09 0.707104781184338 0.7071087811831002 -3.1415853071795863
   children [
-    HingeJoint {
-      jointParameters HingeJointParameters {
+    Shape {
+      geometry Box {
+        size 0.1 0.05 0.1
       }
+    }
+    HingeJoint {
       device [
         RotationalMotor {
           name "rotational motor 1"
-          acceleration 0.02670947683018752
         }
       ]
       endPoint Solid {
-        translation 0 0.10598099999999998 0
+        translation 0 0 0.1
         rotation 1 0 0 0
         children [
           HingeJoint {
-            jointParameters HingeJointParameters {
-            }
             device [
               RotationalMotor {
                 name "rotational motor 2"
-                acceleration 0.5984470727403238
               }
             ]
             endPoint Solid {
-              translation 0 0.11 6.938893903907228e-18
+              translation 0 0 0.1
               rotation 1 0 0 0
               children [
                 HingeJoint {
-                  jointParameters HingeJointParameters {
-                  }
                   device [
                     RotationalMotor {
                       name "rotational motor 3"
-                      acceleration 0.993112818090025
                     }
                   ]
                   endPoint Solid {
-                    translation -1.964199712600756e-09 0.11000000000229027 -1.1068427147042925e-09
-                    rotation -1.0480347913498157e-14 1 6.515871736482e-15 1.5707999999999998
+                    translation 0 0 0.1
+                    rotation 1 0 0 0
                     children [
+                      HingeJoint {
+                        device [
+                          RotationalMotor {
+                            name "rotational motor 4"
+                          }
+                        ]
+                        endPoint Solid {
+                          translation 0 0 0.1
+                          rotation 1 0 0 0
+                          children [
+                            HingeJoint {
+                              device [
+                                RotationalMotor {
+                                  name "rotational motor 5"
+                                }
+                              ]
+                              endPoint Solid {
+                                translation 0 0 0.1
+                                rotation 1 0 0 0
+                                children [
+                                  HingeJoint {
+                                    device [
+                                      RotationalMotor {
+                                        name "rotational motor 6"
+                                      }
+                                    ]
+                                    endPoint Solid {
+                                      translation 0 0 0.1
+                                      rotation 1 0 0 0
+                                      children [
+                                        Shape {
+                                          geometry Box {
+                                            size 0.1 0.05 0.1
+                                          }
+                                        }
+                                      ]
+                                      boundingObject Box {
+                                        size 0.1 0.05 0.1
+                                      }
+                                      physics Physics {
+                                      }
+                                    }
+                                  }
+                                  Shape {
+                                    geometry Box {
+                                      size 0.1 0.05 0.1
+                                    }
+                                  }
+                                ]
+                                boundingObject Box {
+                                  size 0.1 0.05 0.1
+                                }
+                                physics Physics {
+                                }
+                              }
+                            }
+                            Shape {
+                              geometry Box {
+                                size 0.1 0.05 0.1
+                              }
+                            }
+                          ]
+                          boundingObject Box {
+                            size 0.1 0.05 0.1
+                          }
+                          physics Physics {
+                          }
+                        }
+                      }
                       Shape {
                         geometry Box {
-                          size 0.1 0.1 0.1
+                          size 0.1 0.05 0.1
                         }
                       }
                     ]
-                    boundingObject Cylinder {
-                      height 0.1
-                      radius 0.05
+                    boundingObject Box {
+                      size 0.1 0.05 0.1
                     }
                     physics Physics {
                     }
@@ -154,13 +137,12 @@ Robot {
                 }
                 Shape {
                   geometry Box {
-                    size 0.1 0.1 0.1
+                    size 0.1 0.05 0.1
                   }
                 }
               ]
-              boundingObject Cylinder {
-                height 0.1
-                radius 0.05
+              boundingObject Box {
+                size 0.1 0.05 0.1
               }
               physics Physics {
               }
@@ -168,36 +150,23 @@ Robot {
           }
           Shape {
             geometry Box {
-              size 0.1 0.1 0.1
+              size 0.1 0.05 0.1
             }
           }
         ]
-        boundingObject Cylinder {
-          height 0.1
-          radius 0.05
+        boundingObject Box {
+          size 0.1 0.05 0.1
         }
         physics Physics {
         }
       }
     }
-    Shape {
-      appearance Appearance {
-      }
-      geometry Box {
-        size 0.1 0.1 0.1
-      }
-    }
   ]
-  boundingObject Cylinder {
-    height 0.1
-    radius 0.05
+  boundingObject Box {
+    size 0.1 0.05 0.1
   }
   physics Physics {
   }
   controller "my_controller_2"
   supervisor TRUE
-}
-WoodenBox {
-  translation 0 -0.57 0.16
-  size 10 1 10
 }
