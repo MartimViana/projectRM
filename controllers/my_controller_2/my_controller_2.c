@@ -34,20 +34,6 @@ const double MODULE_SIZE = 0.2;
 const double GAP_SIZE = 0.01;
 double WHOLE_LENGTH;
 
-/*Frontal PID controller*/
-const double F_P = 1;
-const double F_I = 0;
-const double F_D = 0;
-double f_previousError = 0;
-double f_previousIntegral = 0;
-
-/*Side PID controller*/
-const double S_P = 1;
-const double S_I = 0;
-const double S_D = 0;
-double s_previousError = 0;
-double s_previousIntegral = 0;
-
 /* Sensors */
 WbDeviceTag sensor;
 double MAX_REACH;
@@ -58,7 +44,7 @@ double *destination;
 
 // Amount of miliseconds the robot takes to refresh current values. The robot refreshes it's values only when
 // it's head is perpendicular to the ground. In this case, when the moviment refreshes.
-const int SAMPLING_PERIOD = 1000;
+const int SAMPLING_PERIOD = 32;
 
 /* Actuators */
 WbDeviceTag motor[JOINTS];
@@ -67,7 +53,7 @@ WbDeviceTag motor[JOINTS];
 const float *rangeImage;
 
 // Maximum amplitude that frontal moviment is allowed to have.
-const double MAX_AMPLITUDE = 1 / (double) JOINTS;
+const double MAX_AMPLITUDE = 1 / (1.2 * (double) JOINTS);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,7 +71,6 @@ double iterate_frontal_speed(double t, double i, double amplitude) {
   return result;
 }
 
-
 /**
  *
 */
@@ -100,7 +85,7 @@ void find_destination() {
     if (result[0] > rangeImage[i]) {
       // save point's distance and angle relative to robot head.
       result[0] = rangeImage[i];
-      result[1] = - FOV + i * (FOV / (double) sizeof(rangeImage)) ;
+      result[1] = - FOV + i * (FOV / (double) sizeof(rangeImage));
     }
     printf("%f\t", rangeImage[i]);
   }
@@ -120,10 +105,8 @@ void read_sensor(WbDeviceTag sensor) {
 }
 
 double calculate_amplitude(double distance) {
-  // if no destination is found, move forward at max amplitude
-  
-  // else, if a destination is found, calculate amplitude
-  return MAX_AMPLITUDE * (distance / MAX_REACH);
+  printf("%f %f %f\n", distance, MAX_REACH, MAX_AMPLITUDE);
+  return (distance / MAX_REACH) * MAX_AMPLITUDE;
 }
 
 int main(int argc, char **argv) {
@@ -158,7 +141,7 @@ int main(int argc, char **argv) {
   wb_lidar_enable_point_cloud(sensor);
   MAX_REACH = wb_lidar_get_max_range(sensor);
   FOV = wb_lidar_get_fov(sensor);
-  printf("%f %f\n", FOV, MAX_REACH);
+  //printf("%f %f\n", FOV, MAX_REACH);
 
   // Calculate length of the robot
   WHOLE_LENGTH = MODULE_SIZE * (JOINTS + 1) + GAP_SIZE * JOINTS;
