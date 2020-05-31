@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.18225126326121796 -0.9363870986349542 -0.2999394581406432 4.279521434482395
-  position 1.507427682333346 1.0725521485294316 0.2040931345862488
+  orientation -0.945333381462096 -0.32353384973193317 -0.040873536317208796 0.5977557970981394
+  position -0.1849998176940201 1.3140702940254587 3.2474738506758825
 }
 TexturedBackground {
 }
@@ -17,11 +17,11 @@ Floor {
 }
 Robot {
   translation 7.71424e-07 -0.04 0.76
-  rotation 0.970418457666435 0.24142911386222196 -6.8045132091282655e-09 4.20424e-06
+  rotation -0.9714789090127468 -0.23712597779113764 1.6128198489457195e-08 -5.307179586466759e-06
   children [
-    HokuyoUrg04lx {
-      translation 1.24311e-06 0.04 -1.44469e-10
-      rotation 5.100079999933671e-06 0.9999999999869946 7.192309999906462e-09 -3.141575307179586
+    SharpGP2Y0A710K0F {
+      translation 0.02 0 -0.07
+      rotation 0 1 0 1.5708
       name "sensor"
     }
     Shape {
@@ -41,7 +41,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0 3.469446951953614e-18 0.09999999999999996
+        translation 0 3.469446951953614e-18 0.09999999999999998
         rotation 1 0 0 0
         children [
           HingeJoint {
@@ -51,7 +51,7 @@ Robot {
               }
             ]
             endPoint Solid {
-              translation 0 -1.6543612251060553e-24 0.10000000000000002
+              translation 0 -1.6543612251060553e-24 0.09999999999999999
               rotation 1 0 0 0
               children [
                 HingeJoint {
@@ -61,7 +61,7 @@ Robot {
                     }
                   ]
                   endPoint Solid {
-                    translation 0 -6.938893903907228e-18 0.10000000000000002
+                    translation 0 -6.938893490316922e-18 0.09999999999999999
                     rotation 1 0 0 0
                     children [
                       HingeJoint {
@@ -71,7 +71,7 @@ Robot {
                           }
                         ]
                         endPoint Solid {
-                          translation 0 0 0.10000000000000002
+                          translation 0 0 0.10000000000000006
                           rotation 1 0 0 0
                           children [
                             HingeJoint {
@@ -81,7 +81,7 @@ Robot {
                                 }
                               ]
                               endPoint Solid {
-                                translation 0 -1.8418808145348464e-12 0.09999999999999995
+                                translation 0 -1.8418808145348464e-12 0.09999999999999996
                                 rotation 1 0 0 0
                                 children [
                                   HingeJoint {
@@ -178,11 +178,11 @@ Robot {
   }
   physics Physics {
   }
-  controller "my_controller_2"
+  controller "my_controller_deluxe"
   supervisor TRUE
 }
 Solid {
-  translation 0 0.18 -4.32
+  translation 0 0.18 -2.99
   scale 5 5 5
   children [
     Shape {

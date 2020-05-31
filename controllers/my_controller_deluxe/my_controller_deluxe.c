@@ -9,7 +9,7 @@
 // Webots library
 #include <webots/robot.h>
 #include <webots/motor.h>
-#include <webots/lidar.h>
+#include <webots/distance_sensor.h>
 
 // Default C libraries
 #include <stdio.h>
@@ -40,7 +40,7 @@ double MAX_REACH;
 double FOV;
 
 // Point that robot want's to follow.
-double *destination;
+double destination;
 
 // Amount of miliseconds the robot takes to refresh current values. The robot refreshes it's values only when
 // it's head is perpendicular to the ground. In this case, when the moviment refreshes.
@@ -75,31 +75,17 @@ double iterate_frontal_speed(double t, double i, double amplitude) {
  *
 */
 void find_destination() {
-  double result[2];
-  result[0] = MAX_REACH;
-  result[1] = 0;
-  
-  // find nearest point of interest
-  for (int i = 1; i < sizeof(rangeImage)-1; i++) {
-    
-    if (result[0] > rangeImage[i]) {
-      // save point's distance and angle relative to robot head.
-      result[0] = rangeImage[i];
-      result[1] = - FOV + i * (FOV / (double) sizeof(rangeImage));
-    }
-    printf("%f\t", rangeImage[i]);
+  double v = wb_distance_sensor_get_value(sensor);
+  if (v == v) {
+    destination = wb_distance_sensor_get_value(sensor);
   }
-  printf("\n");
-  destination = result;
+  
 }
 
 /**
  *
 */
 void read_sensor(WbDeviceTag sensor) {
-  // Retrieve current image values. The values are only refreshed according to the SAMPLING_PERIOD variable.
-  rangeImage = wb_lidar_get_range_image(sensor);
-  
   // Analyze image to find most interesting spot to explore and assign it.
   find_destination();
 }
@@ -122,7 +108,7 @@ int main(int argc, char **argv) {
   motor[5] = wb_robot_get_device("rotational motor 6");
   
   // Initialize motor position
-  double motorPosition[2][JOINTS];
+  double motorPosition[JOINTS];
   
   // Set initial variables to all motors
   for (int i = 0; i < JOINTS; i++) {
@@ -130,18 +116,15 @@ int main(int argc, char **argv) {
     wb_motor_set_position(motor[i], 0);
     
     // Initialize all motor positions
-    for (int j = 0; j < 2; j++) {
-      motorPosition[j][i] = 0;
-    }
+    motorPosition[i] = 0;
   }
   
   // Initialize sensors
   sensor = wb_robot_get_device("sensor");
-  wb_lidar_enable(sensor, SAMPLING_PERIOD);
-  wb_lidar_enable_point_cloud(sensor);
-  MAX_REACH = wb_lidar_get_max_range(sensor);
-  FOV = wb_lidar_get_fov(sensor);
-  //printf("%f %f\n", FOV, MAX_REACH);
+  wb_distance_sensor_enable(sensor, SAMPLING_PERIOD);
+  
+  MAX_REACH = wb_distance_sensor_get_max_value(sensor);
+  printf("%f %f\n", FOV, MAX_REACH);
 
   // Calculate length of the robot
   WHOLE_LENGTH = MODULE_SIZE * (JOINTS + 1) + GAP_SIZE * JOINTS;
@@ -155,15 +138,16 @@ int main(int argc, char **argv) {
     read_sensor(sensor);
     
     // Calculate required amplitude
-    double amplitude = calculate_amplitude(destination[0]);
+    double amplitude = calculate_amplitude(destination);
+    //double amplitude = MAX_AMPLITUDE;
     
     for (int i = 0; i < JOINTS; i++) {
     
       // set forward speed
-      motorPosition[0][i] += iterate_frontal_speed(t, i, amplitude);
+      motorPosition[i] += iterate_frontal_speed(t, i, amplitude);
       
       // set positions
-      wb_motor_set_position(motor[i], motorPosition[0][i]);
+      wb_motor_set_position(motor[i], motorPosition[i]);
       
     }
     printf("%f\n", amplitude);
