@@ -1,0 +1,257 @@
+#VRML_SIM R2020a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.8274720322036779 -0.561421643829526 0.009786406923299754 0.3410522602910315
+  position -6.694205073916784 3.1892902481328096 11.024785753657143
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Robot {
+  translation -3.94 -0.03 0.76
+  rotation -0.9714789090127468 -0.23712597779113764 1.6128198489457195e-08 -5.307179586466759e-06
+  children [
+    SharpGP2Y0A710K0F {
+      translation 0.02 0 -0.07
+      rotation 0 1 0 1.5708
+      name "sensor"
+    }
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.666667 0 0
+        }
+        texture ImageTexture {
+          url [
+            "C:/Users/Sparrow/Desktop/Robos Moveis/Skins/3a1259feb00a71a28e76db934dd5b1a8.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 0.1 0.05 0.1
+      }
+    }
+    HingeJoint {
+      device [
+        RotationalMotor {
+          name "rotational motor 1"
+        }
+      ]
+      endPoint Solid {
+        translation 0 3.469446951953614e-18 0.09999999999999998
+        rotation 1 0 0 0
+        children [
+          HingeJoint {
+            device [
+              RotationalMotor {
+                name "rotational motor 2"
+              }
+            ]
+            endPoint Solid {
+              translation 0 -1.6543612251060553e-24 0.09999999999999999
+              rotation 1 0 0 0
+              children [
+                HingeJoint {
+                  device [
+                    RotationalMotor {
+                      name "rotational motor 3"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 -6.938893490316922e-18 0.09999999999999999
+                    rotation 1 0 0 0
+                    children [
+                      HingeJoint {
+                        device [
+                          RotationalMotor {
+                            name "rotational motor 4"
+                          }
+                        ]
+                        endPoint Solid {
+                          translation 0 0 0.10000000000000006
+                          rotation 1 0 0 0
+                          children [
+                            HingeJoint {
+                              device [
+                                RotationalMotor {
+                                  name "rotational motor 5"
+                                }
+                              ]
+                              endPoint Solid {
+                                translation 0 -1.8418808145348464e-12 0.09999999999999996
+                                rotation 1 0 0 0
+                                children [
+                                  HingeJoint {
+                                    device [
+                                      RotationalMotor {
+                                        name "rotational motor 6"
+                                      }
+                                    ]
+                                    endPoint Solid {
+                                      translation 0 1.3877787807814457e-17 0.09999999999999996
+                                      rotation 1 0 0 0
+                                      children [
+                                        Shape {
+                                          appearance Appearance {
+                                            texture ImageTexture {
+                                              url [
+                                                "C:/Users/Sparrow/Desktop/Robos Moveis/Skins/800px_COLOURBOX36267939.jpg"
+                                              ]
+                                            }
+                                          }
+                                          geometry Box {
+                                            size 0.1 0.05 0.1
+                                          }
+                                        }
+                                      ]
+                                      boundingObject Box {
+                                        size 0.1 0.05 0.1
+                                      }
+                                      physics Physics {
+                                      }
+                                    }
+                                  }
+                                  Shape {
+                                    appearance Appearance {
+                                      texture ImageTexture {
+                                        url [
+                                          "C:/Users/Sparrow/Desktop/Robos Moveis/Skins/800px_COLOURBOX36267939.jpg"
+                                          ""
+                                          ""
+                                        ]
+                                      }
+                                    }
+                                    geometry Box {
+                                      size 0.1 0.05 0.1
+                                    }
+                                  }
+                                ]
+                                boundingObject Box {
+                                  size 0.1 0.05 0.1
+                                }
+                                physics Physics {
+                                }
+                              }
+                            }
+                            Shape {
+                              appearance Appearance {
+                                texture ImageTexture {
+                                  url [
+                                    "C:/Users/Sparrow/Desktop/Robos Moveis/Skins/800px_COLOURBOX36267939.jpg"
+                                  ]
+                                }
+                              }
+                              geometry Box {
+                                size 0.1 0.05 0.1
+                              }
+                            }
+                          ]
+                          boundingObject Box {
+                            size 0.1 0.05 0.1
+                          }
+                          physics Physics {
+                          }
+                        }
+                      }
+                      Shape {
+                        appearance Appearance {
+                          texture ImageTexture {
+                            url [
+                              "C:/Users/Sparrow/Desktop/Robos Moveis/Skins/800px_COLOURBOX36267939.jpg"
+                            ]
+                          }
+                        }
+                        geometry Box {
+                          size 0.1 0.05 0.1
+                        }
+                      }
+                    ]
+                    boundingObject Box {
+                      size 0.1 0.05 0.1
+                    }
+                    physics Physics {
+                    }
+                  }
+                }
+                Shape {
+                  appearance Appearance {
+                    texture ImageTexture {
+                      url [
+                        "C:/Users/Sparrow/Desktop/Robos Moveis/Skins/800px_COLOURBOX36267939.jpg"
+                      ]
+                    }
+                  }
+                  geometry Box {
+                    size 0.1 0.05 0.1
+                  }
+                }
+              ]
+              boundingObject Box {
+                size 0.1 0.05 0.1
+              }
+              physics Physics {
+              }
+            }
+          }
+          Shape {
+            appearance Appearance {
+              texture ImageTexture {
+                url [
+                  "C:/Users/Sparrow/Desktop/Robos Moveis/Skins/800px_COLOURBOX36267939.jpg"
+                ]
+              }
+            }
+            geometry Box {
+              size 0.1 0.05 0.1
+            }
+          }
+        ]
+        boundingObject Box {
+          size 0.1 0.05 0.1
+        }
+        physics Physics {
+        }
+      }
+    }
+  ]
+  boundingObject Box {
+    size 0.1 0.05 0.1
+  }
+  physics Physics {
+  }
+  controller "my_controller_deluxe"
+  supervisor TRUE
+}
+AdvertisingBoard {
+  translation -7.46671 1.5 -9.86901
+  rotation 0 1 0 0.261799
+  frontTexture [
+    "C:/Users/Sparrow/Desktop/webots_billboard.jpg"
+  ]
+}
+PalmTree {
+  translation 5.98 -0.01 -12.92
+}
+BunchOfSunFlowers {
+  translation -4.66 -0.03 -9.53
+}
+Pit {
+  translation 0 -0.04 -4.45
+  size 20 3 20
+  randomSeed 15
+  noiseAmplitude 1.4
+  pitRadius 2
+}
+Rock17cm {
+  translation 0 -0.02 -12.76
+}
+Rock17cm {
+  translation -8.35 -0.02 -6.11
+  name "rock 17 cm(1)"
+}
+Rock17cm {
+  translation 7.26 -0.02 -6.11
+  name "rock 17 cm(2)"
+}

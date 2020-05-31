@@ -1,0 +1,60 @@
+#VRML_SIM R2020a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.17381780553903775 0.9802394049300849 0.09443558386491054 5.209823663310098
+  position -2.4260576824669706 1.552572516545958 7.740038606763492
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Pit {
+  translation -2.51505 -1.33226e-15 7.24801
+  rotation 0 -1 0 0.279798
+  size 30 4 30
+  xDimension 53
+  zDimension 48
+  appearance SandyGround {
+    textureTransform TextureTransform {
+      scale 6 4
+    }
+  }
+  randomSeed 6
+  perlinNOctaves 7
+  noiseAmplitude 0.62
+  pitRadius 4
+}
+Solid {
+}
+Robot {
+  translation 1.16251 0.61 4.10657
+  rotation -1 -9.58979e-09 9.58976e-09 -1.5707953071795862
+  scale 2 2 2
+  children [
+    SolidPipe {
+      rotation 0 0 1 0.523599
+      name "pipeI"
+      height 0.5
+      radius 0.1
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "C:/Users/Sparrow/Desktop/Robos Moveis/green-seamless-snake-skin-pattern-vector-1478364.jpg"
+          ]
+        }
+        roughness 0.5
+        metalness 0
+      }
+      physics Physics {
+        mass 0.12
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 1.05 0.61 4.04
+      }
+    }
+  ]
+  name "TitanBoa"
+}
